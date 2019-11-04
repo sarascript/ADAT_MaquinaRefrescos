@@ -29,7 +29,7 @@ public class AccesoMongo implements I_Acceso_Datos{
 		int i = 0;
 		while (cur.hasNext()) {
 			i++;
-			Deposito dep = new Deposito(cur.next().get("nombre").toString(), Integer.parseInt(cur.next().get("valor").toString()), Integer.parseInt(cur.next().get("cantidad").toString()));
+			Deposito dep = new Deposito(cur.curr().get("nombre").toString(), Integer.parseInt(cur.curr().get("valor").toString()), Integer.parseInt(cur.curr().get("cantidad").toString()));
 			depositos.put(i, dep);
 		}
 		return depositos;
@@ -42,8 +42,8 @@ public class AccesoMongo implements I_Acceso_Datos{
 		int i = 0;
 		while (cur.hasNext()) {
 			i++;
-			Dispensador dep = new Dispensador(cur.next().get("clave").toString(), cur.next().get("nombre").toString(), Integer.parseInt(cur.next().get("precio").toString()), Integer.parseInt(cur.next().get("cantidad").toString()));
-			dispensadores.put(i, dep);
+			Dispensador dep = new Dispensador(cur.curr().get("clave").toString(), cur.curr().get("nombre").toString(), Integer.parseInt(cur.curr().get("precio").toString()), Integer.parseInt(cur.curr().get("cantidad").toString()));
+			dispensadores.put(cur.curr().get("clave").toString(), dep);
 		}
 		return dispensadores;
 	}
